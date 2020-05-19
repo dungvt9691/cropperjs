@@ -538,9 +538,10 @@ export default {
   /**
    * Set the canvas position and size with new data.
    * @param {Object} data - The new canvas data.
+   * @param {Boolean} forceSet - Update width/height immediate.
    * @returns {Cropper} this
    */
-  setCanvasData(data) {
+  setCanvasData(data, forceSet = false) {
     const { canvasData } = this;
     const { aspectRatio } = canvasData;
 
@@ -556,9 +557,11 @@ export default {
       if (isNumber(data.width)) {
         canvasData.width = data.width;
         canvasData.height = data.width / aspectRatio;
+        if (forceSet) canvasData.height = data.height;
       } else if (isNumber(data.height)) {
         canvasData.height = data.height;
         canvasData.width = data.height * aspectRatio;
+        if (forceSet) canvasData.width = data.width;
       }
 
       this.renderCanvas(true);
