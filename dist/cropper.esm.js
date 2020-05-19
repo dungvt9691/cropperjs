@@ -5,7 +5,7 @@
  * Copyright 2015-present Chen Fengyuan
  * Released under the MIT license
  *
- * Date: 2020-05-19T10:24:53.884Z
+ * Date: 2020-05-19T10:36:56.610Z
  */
 
 function _typeof(obj) {
@@ -2913,11 +2913,9 @@ var methods = {
   /**
    * Set the canvas position and size with new data.
    * @param {Object} data - The new canvas data.
-   * @param {Boolean} forceSet - Update width/height immediate.
    * @returns {Cropper} this
    */
   setCanvasData: function setCanvasData(data) {
-    var forceSet = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
     var canvasData = this.canvasData;
     var aspectRatio = canvasData.aspectRatio;
 
@@ -2933,11 +2931,11 @@ var methods = {
       if (isNumber(data.width)) {
         canvasData.width = data.width;
         canvasData.height = data.width / aspectRatio;
-        if (forceSet) canvasData.height = data.height;
+        if (data.forceSet) canvasData.height = data.height;
       } else if (isNumber(data.height)) {
         canvasData.height = data.height;
         canvasData.width = data.height * aspectRatio;
-        if (forceSet) canvasData.width = data.width;
+        if (data.forceSet) canvasData.width = data.width;
       }
 
       this.renderCanvas(true);
